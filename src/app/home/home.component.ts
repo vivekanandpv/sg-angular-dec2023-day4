@@ -10,7 +10,13 @@ export class HomeComponent {
   constructor(private router: Router) {}
 
   toContact() {
-    // this.router.navigate(['contact']);
-    this.router.navigateByUrl('contact');
+    this.router.navigate(['contact'], {
+      queryParams: {
+        lang: 'kn',
+        country: 'india',
+        year: 2023,
+      },
+    });
+    // this.router.navigateByUrl('contact');
   }
 }
