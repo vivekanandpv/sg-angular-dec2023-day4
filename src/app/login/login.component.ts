@@ -10,6 +10,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { RestService } from '../rest.service';
 import { LoginViewModel } from '../models';
+import { DemoService } from '../demo.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,11 @@ export class LoginComponent {
   form: FormGroup;
   loginResponse?: Observable<LoginViewModel>;
 
-  constructor(fb: FormBuilder, private restService: RestService) {
+  constructor(
+    fb: FormBuilder,
+    private restService: RestService,
+    private demo: DemoService
+  ) {
     this.form = fb.group({
       username: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required]],

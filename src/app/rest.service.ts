@@ -11,7 +11,9 @@ export function getUrl(path: string): string {
   providedIn: 'root',
 })
 export class RestService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    console.log('RestService created');
+  }
 
   get<T>(path: string): Observable<T> {
     return this.httpClient.get<T>(getUrl(path));
