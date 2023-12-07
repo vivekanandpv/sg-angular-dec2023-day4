@@ -14,19 +14,11 @@ export class RestService {
   constructor(private httpClient: HttpClient) {}
 
   get<T>(path: string): Observable<T> {
-    return this.httpClient.get<T>(getUrl(path), {
-      headers: {
-        'X-Custom-Header': 'My custom value',
-      },
-    });
+    return this.httpClient.get<T>(getUrl(path));
   }
 
   post<TReq, TRes>(path: string, body: TReq): Observable<TRes> {
-    return this.httpClient.post<TRes>(getUrl(path), body, {
-      headers: {
-        'X-Custom-Header': 'My custom value',
-      },
-    });
+    return this.httpClient.post<TRes>(getUrl(path), body);
   }
 
   put<TReq, TRes>(path: string, body: TReq): Observable<TRes> {

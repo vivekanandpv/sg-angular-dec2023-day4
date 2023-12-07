@@ -4,3 +4,9 @@ export interface BlogPost {
   title: string;
   body: string;
 }
+
+export interface LoginViewModel {
+  username: string;
+  password: string;
+  checkMeOut: boolean;
+}

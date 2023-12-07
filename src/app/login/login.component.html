@@ -1,0 +1,72 @@
+<form [formGroup]="form" novalidate autocomplete="off" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      [formControl]="username"
+    />
+    <ng-container *ngIf="username.dirty">
+      <div class="form-text text-danger" *ngIf="username.hasError('required')">
+        Username is required
+      </div>
+      <div class="form-text text-danger" *ngIf="username.hasError('email')">
+        Enter the proper email
+      </div>
+      <div class="form-text text-danger" *ngIf="username.hasError('my_error')">
+        Should be minimum 8 letters
+      </div>
+    </ng-container>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      [formControl]="password"
+    />
+    <ng-container *ngIf="password.dirty">
+      <div class="form-text text-danger" *ngIf="password.hasError('required')">
+        Password is required
+      </div>
+      <div class="form-text text-danger" *ngIf="password.hasError('minlength')">
+        Minimum
+        {{ password.errors && password.errors["minlength"].requiredLength }}
+        characters
+      </div>
+      <div class="form-text text-danger" *ngIf="password.hasError('pattern')">
+        Password is should only be numbers
+      </div>
+      <div
+        class="form-text text-danger"
+        *ngIf="password.hasError('my_async_error')"
+      >
+        Password is should be minimum 8 characters
+      </div>
+    </ng-container>
+  </div>
+  <div class="mb-3 form-check">
+    <input
+      type="checkbox"
+      class="form-check-input"
+      id="exampleCheck1"
+      [formControl]="checkMeOut"
+    />
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<ng-container *ngIf="loginResponse">
+  <div class="alert alert-success mt-4" *ngIf="loginResponse | async as login">
+    <p><span class="fw-bold">Username:</span> {{ login.username }}</p>
+    <p><span class="fw-bold">Password:</span> {{ login.password }}</p>
+    <p>
+      <span class="fw-bold">Check Me Out:</span>
+      {{ login.checkMeOut ? "Yes" : "No" }}
+    </p>
+  </div>
+</ng-container>
