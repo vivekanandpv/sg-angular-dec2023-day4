@@ -1,1 +1,11 @@
-<p>about works!</p>
+<h4>About Component</h4>
+
+<ng-container *ngIf="id$ | async as id">
+  <ng-container *ngIf="id.valid; else improper">
+    <p>ID: {{ id.value }}</p>
+  </ng-container>
+</ng-container>
+
+<ng-template #improper>
+  <p class="text-danger fw-bold">Improper ID</p>
+</ng-template>

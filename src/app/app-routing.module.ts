@@ -17,7 +17,16 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    component: AboutComponent,
+    children: [
+      {
+        path: '',
+        component: AboutComponent,
+      },
+      {
+        path: ':id',
+        component: AboutComponent,
+      },
+    ],
   },
   {
     path: 'contact',
