@@ -1,11 +1,28 @@
 <div class="p-5">
   <h3>Angular App</h3>
   <hr />
-  <button class="btn btn-primary me-4" (click)="makeGetCall()">GET</button>
-  <button class="btn btn-primary me-4" (click)="makePostCall()">POST</button>
-  <button class="btn btn-primary me-4" (click)="makePutCall()">PUT</button>
-  <button class="btn btn-primary me-4" (click)="makePatchCall()">PATCH</button>
-  <button class="btn btn-primary me-4" (click)="makeDeleteCall()">
-    DELETE
-  </button>
+  <button class="btn btn-primary me-4 my-4" (click)="makeGetCall()">GET</button>
+  <ng-container *ngIf="blogPosts">
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>User Id</th>
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <ng-container *ngIf="blogPosts | async as posts">
+          <tr *ngFor="let p of posts">
+            <td>{{ p.id }}</td>
+            <td>{{ p.userId }}</td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.body }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </ng-container>
 </div>
